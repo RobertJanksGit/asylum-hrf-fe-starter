@@ -4,8 +4,6 @@ import barGraph from '../../../assets/bar-graph.png';
 import paperStack from '../../../assets/paper-stack.jpg';
 import { useNavigate } from 'react-router-dom';
 import { useDownloadData } from '../../../hooks/useDownloadData.js';
-import { decodeBase64 } from '../../../utils/decodeBase64.js';
-
 /**
  * TODO: Ticket 1:
  * Implement structure and styles of the Landing page using Tailwind
@@ -35,7 +33,7 @@ export const LandingPage = () => {
     <div className='flex flex-col items-center w-full'>
       {/* Title Section */}
       <div className='w-full primary-c text-white text-center py-8' role='banner'>
-        <div className='max-w-[1200px] mx-auto px-4'>
+        <div className='w-full px-6 sm:px-12 lg:px-4 mx-auto lg:max-w-[1200px]'>
           <h1 className='text-4xl font-bold mb-4'>Asylum Office Grant Rate Tracker</h1>
           <p className='text-lg'>
             The Asylum Office Grant Rate Tracker provides asylum seekers, researchers, policymakers, and the public an interactive tool to explore USCIS data on
@@ -45,7 +43,7 @@ export const LandingPage = () => {
       </div>
 
       <div className='w-full secondary-c'>
-        <main className='max-w-[1200px] w-full px-4 mx-auto pt-12' role='main'>
+        <main className='w-full px-6 sm:px-12 lg:px-4 mx-auto lg:max-w-[1200px] pt-12' role='main'>
           {/* Graph Section */}
           <section className='w-full grid grid-cols-1 md:grid-cols-3 gap-8 mb-8' aria-label='Data Visualization Options'>
             <div className='flex flex-col items-center'>
@@ -63,16 +61,16 @@ export const LandingPage = () => {
           </section>
 
           {/* Action Buttons */}
-          <div className='flex justify-center gap-4 mb-12' role='group' aria-label='Data Access Options'>
+          <div className='flex flex-col md:flex-row justify-center gap-4 mb-12' role='group' aria-label='Data Access Options'>
             <button
-              className='bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
+              className='w-full md:w-auto bg-gray-600 text-white px-6 py-3 md:px-4 md:py-2 rounded hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
               aria-label='View the data in interactive format'
             >
               View the Data
             </button>
             <button
               onClick={downloadCSV}
-              className='bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
+              className='w-full md:w-auto bg-gray-600 text-white px-6 py-3 md:px-4 md:py-2 rounded hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
               aria-label='Download the data in CSV format'
             >
               Download the Data
@@ -80,7 +78,7 @@ export const LandingPage = () => {
           </div>
 
           {/* Info Section */}
-          <section className='w-full grid grid-cols-1 md:grid-cols-2 gap-16 mb-12' aria-label='About the Tool'>
+          <section className='w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-12' aria-label='About the Tool'>
             <img src={paperStack} alt='Stack of paper documents representing asylum decisions data' className='w-full h-auto rounded-lg shadow-md' />
             <div className='flex items-center justify-center'>
               <p className='text-center'>
@@ -118,11 +116,11 @@ export const LandingPage = () => {
             </div>
           </section>
 
-          {/* Read More and Back to Top Buttons */}
+          {/* Read More Button */}
           <div className='flex flex-col items-center gap-4 mb-8'>
             <button
               onClick={handleReadMore}
-              className='bg-[#666555] text-white px-6 py-2 rounded hover:bg-[#4d4c40] focus:ring-2 focus:ring-offset-2 focus:ring-[#666555]'
+              className='w-full md:w-auto bg-[#666555] text-white px-6 py-3 md:px-4 md:py-2 rounded hover:bg-[#4d4c40] focus:ring-2 focus:ring-offset-2 focus:ring-[#666555]'
               aria-label='Read more about Human Rights First'
             >
               Read More
