@@ -8,9 +8,9 @@ jest.mock('../../../assets/line-graph.png', () => 'line-graph-mock');
 jest.mock('../../../assets/bar-graph.png', () => 'bar-graph-mock');
 jest.mock('../../../assets/paper-stack.jpg', () => 'paper-stack-mock');
 
-// Mock window.scrollTo
-const mockScrollTo = jest.fn();
-Object.defineProperty(window, 'scrollTo', { value: mockScrollTo });
+// Mock window.scrollBy
+const mockScrollBy = jest.fn();
+Object.defineProperty(window, 'scrollBy', { value: mockScrollBy });
 
 // Mock window.open
 const mockOpen = jest.fn();
@@ -24,23 +24,34 @@ const renderWithRouter = ui => {
 describe('LandingPage', () => {
   beforeEach(() => {
     // Clear mock function calls before each test
-    mockScrollTo.mockClear();
+    mockScrollBy.mockClear();
     mockOpen.mockClear();
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
   });
 
   describe('scrollToTop function', () => {
-    test('should call window.scrollTo with smooth behavior when supported', () => {
+    test('should smoothly scroll to top using intervals', () => {
+      // Mock window.scrollY
+      Object.defineProperty(window, 'scrollY', {
+        value: 100,
+        configurable: true,
+      });
+
       renderWithRouter(<LandingPage />);
 
       // Find and click the "Back to Top" button
       const backToTopButton = screen.getByText(/back to top/i);
       fireEvent.click(backToTopButton);
 
-      // Check if scrollTo was called with the correct parameters
-      expect(mockScrollTo).toHaveBeenCalledWith({
-        top: 0,
-        behavior: 'smooth',
-      });
+      // Advance timers to trigger the first interval callback
+      jest.advanceTimersByTime(10);
+
+      // Verify scrollBy was called with the correct step calculation
+      expect(mockScrollBy).toHaveBeenCalledWith(0, -5);
     });
   });
 

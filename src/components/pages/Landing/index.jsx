@@ -16,20 +16,14 @@ export const LandingPage = () => {
   const { downloadCSV } = useDownloadData();
 
   const scrollToTop = () => {
-    if ('scrollBehavior' in document.documentElement.style) {
-      // Use modern smooth scrolling
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      // Fallback for older browsers
-      let scrollStep = -window.scrollY / 20; // Adjust speed
-      let scrollInterval = setInterval(() => {
-        if (window.scrollY === 0) {
-          clearInterval(scrollInterval);
-        } else {
-          window.scrollBy(0, scrollStep);
-        }
-      }, 10); // Adjust interval time for smoothness
-    }
+    let scrollStep = -window.scrollY / 20; // Adjust the divisor for speed
+    let scrollInterval = setInterval(() => {
+      if (window.scrollY === 0) {
+        clearInterval(scrollInterval);
+      } else {
+        window.scrollBy(0, scrollStep);
+      }
+    }, 10); // Adjust the interval time for smoothness
   };
 
   // Open Human Rights First website
