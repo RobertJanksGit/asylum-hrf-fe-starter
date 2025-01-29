@@ -62,8 +62,8 @@ export const LandingPage = () => {
 
           {/* Action Buttons */}
           <div className='flex justify-center gap-4 mb-12'>
-            <button className='bg-gray-400 text-white px-4 py-2 rounded'>View the Data</button>
-            <button onClick={downloadCSV} className='bg-gray-400 text-white px-4 py-2 rounded'>
+            <button className='bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700'>View the Data</button>
+            <button onClick={downloadCSV} className='bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700'>
               Download the Data
             </button>
           </div>
