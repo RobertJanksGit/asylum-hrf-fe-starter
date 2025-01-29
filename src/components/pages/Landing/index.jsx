@@ -15,12 +15,20 @@ export const LandingPage = () => {
   const navigate = useNavigate();
   const { downloadCSV } = useDownloadData();
 
-  // Scroll to top of page
   const scrollToTop = () => {
     if ('scrollBehavior' in document.documentElement.style) {
+      // Use modern smooth scrolling
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      window.scrollTo(0, 0); // Fallback for older browsers
+      // Fallback for older browsers
+      let scrollStep = -window.scrollY / 20; // Adjust speed
+      let scrollInterval = setInterval(() => {
+        if (window.scrollY === 0) {
+          clearInterval(scrollInterval);
+        } else {
+          window.scrollBy(0, scrollStep);
+        }
+      }, 10); // Adjust interval time for smoothness
     }
   };
 
