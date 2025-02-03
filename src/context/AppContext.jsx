@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-// import testData from '../data/test_data.json';
+import testData from '../data/test_data.json';
 import { useLocalStorage } from '../hooks/useLocalStorage.js';
 
 const AppContext = createContext({});
@@ -19,6 +19,7 @@ const useAppContextProvider = () => {
 
   useLocalStorage({ graphData, setGraphData });
 
+  // Fetches fiscal summary data from the API
   const getFiscalData = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/fiscalSummary`);
@@ -29,6 +30,7 @@ const useAppContextProvider = () => {
     }
   };
 
+  // Fetches citizenship summary data from the API
   const getCitizenshipResults = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/citizenshipSummary`);
@@ -59,6 +61,7 @@ const useAppContextProvider = () => {
     }
   };
 
+  // Resets the graph data to an empty object
   const clearQuery = () => {
     setGraphData({});
   };
