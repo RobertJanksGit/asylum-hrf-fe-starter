@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import testData from '../data/test_data.json';
+// import testData from '../data/test_data.json';
 import { useLocalStorage } from '../hooks/useLocalStorage.js';
 
 const AppContext = createContext({});
+
+const BASE_URL = 'https://hrf-asylum-be-b.herokuapp.com/cases';
 
 /**
  * TODO: Ticket 2:
@@ -17,16 +19,24 @@ const useAppContextProvider = () => {
 
   useLocalStorage({ graphData, setGraphData });
 
-  const getFiscalData = () => {
-    // TODO: Replace this with functionality to retrieve the data from the fiscalSummary endpoint
-    const fiscalDataRes = testData;
-    return fiscalDataRes;
+  const getFiscalData = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/fiscalSummary`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching fiscal data:', error);
+      return testData;
+    }
   };
 
   const getCitizenshipResults = async () => {
-    // TODO: Replace this with functionality to retrieve the data from the citizenshipSummary endpoint
-    const citizenshipRes = testData.citizenshipResults;
-    return citizenshipRes;
+    try {
+      const response = await axios.get(`${BASE_URL}/citizenshipSummary`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching citizenship data:', error);
+      return testData.citizenshipResults;
+    }
   };
 
   const updateQuery = async () => {
@@ -34,7 +44,19 @@ const useAppContextProvider = () => {
   };
 
   const fetchData = async () => {
-    // TODO: fetch all the required data and set it to the graphData state
+    try {
+      const [fiscalData, citizenshipData] = await Promise.all([getFiscalData(), getCitizenshipResults()]);
+
+      setGraphData({
+        ...fiscalData,
+        citizenshipResults: citizenshipData,
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setGraphData(testData);
+    } finally {
+      setIsDataLoading(false);
+    }
   };
 
   const clearQuery = () => {
