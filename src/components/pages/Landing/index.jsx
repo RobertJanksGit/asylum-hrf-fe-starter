@@ -63,6 +63,7 @@ export const LandingPage = () => {
           {/* Action Buttons */}
           <div className='flex flex-col md:flex-row justify-center gap-4 mb-12' role='group' aria-label='Data Access Options'>
             <button
+              onClick={() => navigate('/graphs')}
               className='w-full md:w-auto bg-gray-600 text-white px-6 py-3 md:px-4 md:py-2 rounded hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
               aria-label='View the data in interactive format'
             >
