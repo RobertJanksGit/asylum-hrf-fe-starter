@@ -45,18 +45,18 @@ export const LandingPage = () => {
       <div className='w-full secondary-c'>
         <main className='w-full px-6 sm:px-12 lg:px-4 mx-auto lg:max-w-[1200px] pt-12' role='main'>
           {/* Graph Section */}
-          <section className='w-full grid grid-cols-1 md:grid-cols-3 gap-8 mb-8' aria-label='Data Visualization Options'>
-            <div className='flex flex-col items-center'>
-              <img src={barGraph} alt='Bar graph showing grant rates by office' className='h-32 object-contain mb-4' />
-              <p className='text-center'>Search Grant Rates By Office</p>
+          <section className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8' aria-label='Data Visualization Options'>
+            <div className='flex flex-col items-center bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow'>
+              <img src={barGraph} alt='Bar graph showing grant rates by office' className='h-24 sm:h-28 lg:h-32 w-full object-contain mb-4' />
+              <p className='text-center text-sm sm:text-base'>Search Grant Rates By Office</p>
             </div>
-            <div className='flex flex-col items-center'>
-              <img src={pieChart} alt='Pie chart showing grant rates by nationality' className='h-32 object-contain mb-4' />
-              <p className='text-center'>Search Grant Rates By Nationality</p>
+            <div className='flex flex-col items-center bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow'>
+              <img src={pieChart} alt='Pie chart showing grant rates by nationality' className='h-24 sm:h-28 lg:h-32 w-full object-contain mb-4' />
+              <p className='text-center text-sm sm:text-base'>Search Grant Rates By Nationality</p>
             </div>
-            <div className='flex flex-col items-center'>
-              <img src={lineGraph} alt='Line graph showing grant rates over time' className='h-32 object-contain mb-4' />
-              <p className='text-center'>Search Grant Rates Over Time</p>
+            <div className='flex flex-col items-center bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow'>
+              <img src={lineGraph} alt='Line graph showing grant rates over time' className='h-24 sm:h-28 lg:h-32 w-full object-contain mb-4' />
+              <p className='text-center text-sm sm:text-base'>Search Grant Rates Over Time</p>
             </div>
           </section>
 

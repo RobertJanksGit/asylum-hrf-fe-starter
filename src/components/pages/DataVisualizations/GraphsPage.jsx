@@ -9,12 +9,16 @@ export const GraphsPage = () => {
 
   return (
     <div className='secondary-c'>
-      <div className='plot-main flex w-[70%] gap-10 mx-auto justify-end'>
-        <div className='plot-main flex-c'>
-          <h1 className='py-5'>{getGraphsHeader(mapView)}</h1>
-          <section className='maps'>{getMapView(mapView)}</section>
+      <div className='plot-main flex flex-col md:flex-row w-full md:w-[70%] gap-4 md:gap-10 mx-auto px-4 md:px-0 md:justify-end'>
+        <div className='plot-main flex-c w-full'>
+          <h1 className='py-5 text-xl md:text-2xl text-center md:text-left'>{getGraphsHeader(mapView)}</h1>
+          <section className='maps overflow-x-auto'>
+            <div className='min-w-[300px]'>{getMapView(mapView)}</div>
+          </section>
         </div>
-        <GraphButtons mapView={mapView} setMapView={setMapView} />
+        <div className='w-full md:w-auto'>
+          <GraphButtons mapView={mapView} setMapView={setMapView} />
+        </div>
       </div>
       <Loading />
     </div>
